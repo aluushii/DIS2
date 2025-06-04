@@ -25,7 +25,7 @@
 <script>
     function createYarn() {
       const img = document.createElement('img');
-      img.src = "{{ url_for('static', filename='../img/yarn.png') }}";
+      img.src = "{{ url_for('static', filename='img/yarn.png') }}";
       img.className = 'yarn';
       img.style.left = Math.random() * 100 + 'vw';
       img.style.animationDuration = (Math.random() * 3 + 2) + 's';
