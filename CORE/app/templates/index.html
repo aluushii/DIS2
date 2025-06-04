@@ -23,22 +23,23 @@
       </style>      
 </head>
 <script>
-    function createYarn() {
-      const img = document.createElement('img');
-      img.src = "{{ url_for('static', filename='img/yarn.png') }}";
-      img.className = 'yarn';
-      img.style.left = Math.random() * 100 + 'vw';
-      img.style.animationDuration = (Math.random() * 3 + 2) + 's';
-      document.body.appendChild(img);
-  
-      setTimeout(() => {
-        img.remove();
-      }, 6000);
-    }
-  
-    setInterval(createYarn, 300);
-  </script>
+    const yarnSrc = "{{ url_for('static', filename='img/yarn.png') }}";
 
+    function createYarn() {
+        const img = document.createElement('img');
+        img.src = yarnSrc;
+        img.className = 'yarn';
+        img.style.left = Math.random() * 100 + 'vw';
+        img.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        document.body.appendChild(img);
+
+        setTimeout(() => {
+            img.remove();
+        }, 6000);
+    }
+
+    setInterval(createYarn, 300);
+</script>
 <body>
     <h1>Find a Knitting Recipe</h1>
     <form method="post" action="/results">
