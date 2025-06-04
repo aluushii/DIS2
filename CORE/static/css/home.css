@@ -1,3 +1,17 @@
+:root {
+    --margin-md: 1rem;
+    --margin-lg: 2rem;
+    --margin-xl: 3rem;
+    --margin-xxl: 4rem;
+  
+    --font-h1: 2rem;
+  
+    --gray-dark: #555;
+  
+    --box-shadow-depth: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+
 .home {
     margin-top: var(--margin-lg);
 }
