@@ -9,18 +9,22 @@
           top: -100px;
           width: 50px;
           opacity: 0.7;
-          animation: fall linear infinite;
+          animation: fall linear infinite, spin linear infinite;
+          z-index: 1000;
+          pointer-events: none;
         }
       
         @keyframes fall {
-          0% {
-            transform: translateY(-100px);
-          }
-          100% {
-            transform: translateY(110vh);
-          }
+          0% { transform: translateY(-100px); }
+          100% { transform: translateY(110vh); }
         }
-      </style>      
+      
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      </style>
+       
 </head>
 
 <body>
@@ -53,22 +57,27 @@
         <button type="submit">Find Recipes</button>
     </form>
     <script>
-        const yarnSrc = "{{ url_for('static', filename='img/yarn.png') }}";
-    
+        const yarnImages = [
+          "{{ url_for('static', filename='img/yarn1.png') }}",
+          "{{ url_for('static', filename='img/yarn2.png') }}",
+          "{{ url_for('static', filename='img/yarn3.png') }}",
+          "{{ url_for('static', filename='img/yarn4.png') }}"
+        ];
+      
         function createYarn() {
-            const img = document.createElement('img');
-            img.src = yarnSrc;
-            img.className = 'yarn';
-            img.style.left = Math.random() * 100 + 'vw';
-            img.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            document.body.appendChild(img);
-    
-            setTimeout(() => {
-                img.remove();
-            }, 6000);
+          const img = document.createElement('img');
+          img.src = yarnImages[Math.floor(Math.random() * yarnImages.length)];
+          img.className = 'yarn';
+          img.style.left = Math.random() * 100 + 'vw';
+          img.style.animationDuration = (Math.random() * 3 + 2) + 's, 4s'; // fall + spin
+          document.body.appendChild(img);
+      
+          setTimeout(() => {
+            img.remove();
+          }, 6000);
         }
-    
+      
         setInterval(createYarn, 300);
-    </script>
+      </script>
 </body>
 </html>
