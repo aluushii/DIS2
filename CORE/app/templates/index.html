@@ -4,14 +4,18 @@
 <head>
     <title>Find a Recipe</title>
     <style>
-        .yarn {
+        .yarn-wrapper {
           position: fixed;
           top: -100px;
           width: 50px;
-          opacity: 0.7;
-          animation: fall linear infinite, spin linear infinite;
+          animation: fall linear infinite;
           z-index: 1000;
           pointer-events: none;
+        }
+      
+        .yarn {
+          width: 100%;
+          animation: spin 4s linear infinite;
         }
       
         @keyframes fall {
@@ -24,6 +28,7 @@
           100% { transform: rotate(360deg); }
         }
       </style>
+      
        
 </head>
 
@@ -58,28 +63,31 @@
     </form>
     <script>
         const yarnImages = [
-            "{{ url_for('static', filename='img/yarn1.png') }}",
-            "{{ url_for('static', filename='img/yarn2.png') }}",
-            "{{ url_for('static', filename='img/yarn3.png') }}",
-            "{{ url_for('static', filename='img/yarn4.png') }}"
+          "{{ url_for('static', filename='img/yarn1.png') }}",
+          "{{ url_for('static', filename='img/yarn2.png') }}",
+          "{{ url_for('static', filename='img/yarn3.png') }}",
+          "{{ url_for('static', filename='img/yarn4.png') }}"
         ];
-    
+      
         function createYarn() {
-            const img = document.createElement('img');
-            img.src = yarnImages[Math.floor(Math.random() * yarnImages.length)];
-            img.className = 'yarn';
-            img.style.left = Math.random() * 100 + 'vw';
-            img.style.animationDuration = (Math.random() * 3 + 2) + 's, 4s';
-            img.style.animationName = 'fall, spin';
-            document.body.appendChild(img);
-    
-            setTimeout(() => {
-                img.remove();
-            }, 6000);
+          const wrapper = document.createElement('div');
+          wrapper.className = 'yarn-wrapper';
+          wrapper.style.left = Math.random() * 100 + 'vw';
+          wrapper.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      
+          const img = document.createElement('img');
+          img.className = 'yarn';
+          img.src = yarnImages[Math.floor(Math.random() * yarnImages.length)];
+      
+          wrapper.appendChild(img);
+          document.body.appendChild(wrapper);
+      
+          setTimeout(() => wrapper.remove(), 6000);
         }
-    
+      
         setInterval(createYarn, 300);
-    </script>
+      </script>
+      
     
 </body>
 </html>
