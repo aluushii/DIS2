@@ -1,15 +1,22 @@
 # app/routes.py
 
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
+
 from .db import get_db_connection
 
 
 main = Blueprint('main', __name__)
 
+#Start ved home
+@main.route('/')
+def root_redirect():
+    return redirect(url_for('main.home'))
+
 @main.route('/home')
 def home():
     return render_template('home.html')
 
+# Route for recipe page
 @main.route('/recipe', methods=['GET'])
 def recipe():
     conn = get_db_connection()
@@ -29,6 +36,7 @@ def recipe():
 
     return render_template('recipe.html', materials=materials, needles=needles, yarns=yarns)
 
+# Route for resultatet af recipe page
 @main.route('/results', methods=['POST'])
 def results():
     material = float(request.form['material_g'])
