@@ -1,20 +1,67 @@
-{% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to the Knitting Recipe Finder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body>
+    <div class="home">
+        <section class="home__hero">
+            <div class="hero__left">
+                <h1>Find the perfect knitting recipe for your yarn</h1>
+                <p>
+                    Filter by material, needle size, and yarn type. We’ll find patterns that match exactly what you have.
+                </p>
+                <a href="{{ url_for('main.recipe') }}" class="btn btn--large">Get Started</a>
+            </div>
+            <div class="hero__right">
+                <img src="{{ url_for('static', filename='img/yarn1.png') }}" alt="yarn" class="hero__img">
+            </div>
+        </section>
 
-{% block content %}
-<div class="home">
-    <section class="home__hero">
-        <div class="hero__left">
-            <h1>Find the Perfect Knitting Recipe</h1>
-            <p>
-                Filter by yarn, material, and needle size to get matching patterns tailored for your stash.
-            </p>
-            <a href="{{ url_for('main.recipe') }}" class="btn btn--large">Get Started</a>
-        </div>
-        <div class="hero__right">
-            <img src="{{ url_for('static', filename='img/yarn1.png') }}" alt="Knitting yarn" class="hero__img">
-        </div>
-    </section>
-</div>
-{% endblock %}
+        <section class="home__info">
+            <h2 class="home__title">Smart, stash-friendly knitting</h2>
+            <div>
+                <div class="info__text">
+                    <h3>Make the most of your yarn</h3>
+                    <p>
+                        Tired of wondering what to make with 150g of superwash merino? Our smart filter lets you search by exactly what you have on hand.
+                    </p>
+                </div>
+                <img src="{{ url_for('static', filename='img/produce1.jpg') }}" alt="knitting">
+            </div>
+
+            <div>
+                <div class="info__text">
+                    <h3>Plan your projects easily</h3>
+                    <p>
+                        Whether you’re knitting for yourself or someone else, quickly find what fits your material and needle setup — no guesswork.
+                    </p>
+                </div>
+                <img src="{{ url_for('static', filename='img/produce2.jpg') }}" alt="knitting">
+            </div>
+
+            <div>
+                <div class="info__text">
+                    <h3>Inspired by simplicity</h3>
+                    <p>
+                        Built by and for knitters. Less scrolling, more knitting.
+                    </p>
+                </div>
+                <img src="{{ url_for('static', filename='img/produce3.jpg') }}" alt="knitting">
+            </div>
+
+            <h2 class="home__title">Get Started</h2>
+            <div>
+                <div class="info__text">
+                    <p>
+                        Click below to begin finding patterns that match your stash.
+                    </p>
+                    <a href="{{ url_for('main.recipe') }}" class="btn btn--large">Find Recipes</a>
+                </div>
+                <img src="{{ url_for('static', filename='img/produce4.jpg') }}" alt="knitting">
+            </div>
+        </section>
+    </div>
+</body>
+</html>
