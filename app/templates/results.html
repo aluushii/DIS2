@@ -1,0 +1,23 @@
+<!-- app/templates/results.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Matching Recipes</title>
+</head>
+<body>
+    <h1>Results</h1>
+
+    {% if matches %}
+        <ul>
+        {% for r in matches %}
+            <li><strong>{{ r[0] }}</strong> – Size: {{ r[1] }}, Material: {{ r[2] }}g, Needle: {{ r[3] }}mm, Yarn: {{ r[4] }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No matching recipes found.</p>
+    {% endif %}
+
+    <a href="/">Search again</a>
+</body>
+</html>
+
