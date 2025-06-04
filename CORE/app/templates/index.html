@@ -15,7 +15,17 @@
       
         .yarn {
           width: 100%;
+          opacity: 0.3; /* 30% transparent */
           animation: spin 4s linear infinite;
+        }
+      
+        .diddy {
+          position: fixed;
+          top: -100px;
+          width: 100px;
+          z-index: 999;
+          pointer-events: none;
+          animation: fall linear infinite;
         }
       
         @keyframes fall {
@@ -28,6 +38,7 @@
           100% { transform: rotate(360deg); }
         }
       </style>
+      
       
        
 </head>
@@ -65,9 +76,10 @@
         const yarnImages = [
           "{{ url_for('static', filename='img/yarn1.png') }}",
           "{{ url_for('static', filename='img/yarn2.png') }}",
-          "{{ url_for('static', filename='img/yarn3.webp') }}",
-          "{{ url_for('static', filename='img/yarn4.webp') }}"
+          "{{ url_for('static', filename='img/yarn3.png') }}",
+          "{{ url_for('static', filename='img/yarn4.png') }}"
         ];
+        const diddyImage = "{{ url_for('static', filename='img/diddy.png') }}";
       
         function createYarn() {
           const wrapper = document.createElement('div');
@@ -85,8 +97,21 @@
           setTimeout(() => wrapper.remove(), 6000);
         }
       
+        function createDiddy() {
+          const diddy = document.createElement('img');
+          diddy.src = diddyImage;
+          diddy.className = 'diddy';
+          diddy.style.left = Math.random() * 100 + 'vw';
+          diddy.style.animationDuration = '6s';
+          document.body.appendChild(diddy);
+      
+          setTimeout(() => diddy.remove(), 7000);
+        }
+      
         setInterval(createYarn, 300);
+        setInterval(createDiddy, 15000); // falls rarely
       </script>
+      
       
     
 </body>
