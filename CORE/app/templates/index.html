@@ -37,6 +37,32 @@
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
         }
+
+        .body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fff; /* or whatever fits your theme */
+        font-family: sans-serif;
+        text-align: center;
+        }
+
+        .center-box {
+        padding: 2rem;
+        border-radius: 1rem;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        form select,
+        form button {
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        font-size: 1rem;
+        }
       </style>
       
       
@@ -44,75 +70,76 @@
 </head>
 
 <body>
+  <div class="center-box">
     <h1>Find a Knitting Recipe</h1>
     <form method="post" action="/results">
-        <label for="material_g">Material (g):</label>
-        <select name="material_g" required>
-            {% for g in materials %}
-                <option value="{{ g }}">{{ g }}</option>
-            {% endfor %}
-        </select>
-        <br>
+      <label for="material_g">Material (g):</label>
+      <select name="material_g" required>
+        {% for g in materials %}
+        <option value="{{ g }}">{{ g }}</option>
+        {% endfor %}
+      </select>
+      <br>
 
-        <label for="needle">Needle (mm):</label>
-        <select name="needle" required>
-            {% for n in needles %}
-                <option value="{{ n }}">{{ n }}</option>
-            {% endfor %}
-        </select>
-        <br>
+      <label for="needle">Needle (mm):</label>
+      <select name="needle" required>
+        {% for n in needles %}
+        <option value="{{ n }}">{{ n }}</option>
+        {% endfor %}
+      </select>
+      <br>
 
-        <label for="yarn">Yarn:</label>
-        <select name="yarn" required>
-            {% for y in yarns %}
-                <option value="{{ y }}">{{ y }}</option>
-            {% endfor %}
-        </select>
-        <br><br>
+      <label for="yarn">Yarn:</label>
+      <select name="yarn" required>
+        {% for y in yarns %}
+        <option value="{{ y }}">{{ y }}</option>
+        {% endfor %}
+      </select>
+      <br><br>
 
-        <button type="submit">Find Recipes</button>
+      <button type="submit">Find Recipes</button>
     </form>
-    <script>
-        const yarnImages = [
-          "{{ url_for('static', filename='img/yarn1.png') }}",
-          "{{ url_for('static', filename='img/yarn2.png') }}",
-          "{{ url_for('static', filename='img/yarn3.png') }}",
-          "{{ url_for('static', filename='img/yarn4.png') }}"
-        ];
-        const diddyImage = "{{ url_for('static', filename='img/diddy.png') }}";
-      
-        function createYarn() {
-          const wrapper = document.createElement('div');
-          wrapper.className = 'yarn-wrapper';
-          wrapper.style.left = Math.random() * 100 + 'vw';
-          wrapper.style.animationDuration = (Math.random() * 3 + 2) + 's';
-      
-          const img = document.createElement('img');
-          img.className = 'yarn';
-          img.src = yarnImages[Math.floor(Math.random() * yarnImages.length)];
-      
-          wrapper.appendChild(img);
-          document.body.appendChild(wrapper);
-      
-          setTimeout(() => wrapper.remove(), 6000);
-        }
-      
-        function createDiddy() {
-          const diddy = document.createElement('img');
-          diddy.src = diddyImage;
-          diddy.className = 'diddy';
-          diddy.style.left = Math.random() * 100 + 'vw';
-          diddy.style.animationDuration = '6s';
-          document.body.appendChild(diddy);
-      
-          setTimeout(() => diddy.remove(), 7000);
-        }
-      
-        setInterval(createYarn, 300);
-        setInterval(createDiddy, 15000); // falls rarely
-      </script>
-      
-      
-    
+  </div>
+
+  <script>
+    const yarnImages = [
+      "{{ url_for('static', filename='img/yarn1.png') }}",
+      "{{ url_for('static', filename='img/yarn2.png') }}",
+      "{{ url_for('static', filename='img/yarn3.webp') }}",
+      "{{ url_for('static', filename='img/yarn4.webp') }}"
+    ];
+    const diddyImage = "{{ url_for('static', filename='img/diddy.png') }}";
+
+    function createYarn() {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'yarn-wrapper';
+      wrapper.style.left = Math.random() * 100 + 'vw';
+      wrapper.style.animationDuration = (Math.random() * 3 + 2) + 's';
+
+      const img = document.createElement('img');
+      img.className = 'yarn';
+      img.src = yarnImages[Math.floor(Math.random() * yarnImages.length)];
+
+      wrapper.appendChild(img);
+      document.body.appendChild(wrapper);
+
+      setTimeout(() => wrapper.remove(), 6000);
+    }
+
+    function createDiddy() {
+      const diddy = document.createElement('img');
+      diddy.src = diddyImage;
+      diddy.className = 'diddy';
+      diddy.style.left = Math.random() * 100 + 'vw';
+      diddy.style.animationDuration = '6s';
+      document.body.appendChild(diddy);
+
+      setTimeout(() => diddy.remove(), 7000);
+    }
+
+    setInterval(createYarn, 300);
+    setInterval(createDiddy, 15000);
+  </script>
 </body>
+
 </html>
