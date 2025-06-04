@@ -6,8 +6,12 @@ from .db import get_db_connection
 
 main = Blueprint('main', __name__)
 
-@main.route('/', methods=['GET'])
-def index():
+@main.route('/home')
+def home():
+    return render_template('home.html')
+
+@main.route('/recipe', methods=['GET'])
+def recipe():
     conn = get_db_connection()
     cur = conn.cursor()
 
@@ -23,7 +27,7 @@ def index():
     cur.close()
     conn.close()
 
-    return render_template('index.html', materials=materials, needles=needles, yarns=yarns)
+    return render_template('recipe.html', materials=materials, needles=needles, yarns=yarns)
 
 @main.route('/results', methods=['POST'])
 def results():

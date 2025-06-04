@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="home">
+    <section class="home__hero">
+        <div class="hero__left">
+            <h1>Find the Perfect Knitting Recipe</h1>
+            <p>
+                Filter by yarn, material, and needle size to get matching patterns tailored for your stash.
+            </p>
+            <a href="{{ url_for('main.recipe') }}" class="btn btn--large">Get Started</a>
+        </div>
+        <div class="hero__right">
+            <img src="{{ url_for('static', filename='img/yarn1.png') }}" alt="Knitting yarn" class="hero__img">
+        </div>
+    </section>
+</div>
+{% endblock %}
