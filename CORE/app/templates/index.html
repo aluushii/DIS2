@@ -58,26 +58,28 @@
     </form>
     <script>
         const yarnImages = [
-          "{{ url_for('static', filename='img/yarn1.png') }}",
-          "{{ url_for('static', filename='img/yarn2.png') }}",
-          "{{ url_for('static', filename='img/yarn3.png') }}",
-          "{{ url_for('static', filename='img/yarn4.png') }}"
+            "{{ url_for('static', filename='img/yarn1.png') }}",
+            "{{ url_for('static', filename='img/yarn2.png') }}",
+            "{{ url_for('static', filename='img/yarn3.png') }}",
+            "{{ url_for('static', filename='img/yarn4.png') }}"
         ];
-      
+    
         function createYarn() {
-          const img = document.createElement('img');
-          img.src = yarnImages[Math.floor(Math.random() * yarnImages.length)];
-          img.className = 'yarn';
-          img.style.left = Math.random() * 100 + 'vw';
-          img.style.animationDuration = (Math.random() * 3 + 2) + 's, 4s'; // fall + spin
-          document.body.appendChild(img);
-      
-          setTimeout(() => {
-            img.remove();
-          }, 6000);
+            const img = document.createElement('img');
+            img.src = yarnImages[Math.floor(Math.random() * yarnImages.length)];
+            img.className = 'yarn';
+            img.style.left = Math.random() * 100 + 'vw';
+            img.style.animationDuration = (Math.random() * 3 + 2) + 's, 4s';
+            img.style.animationName = 'fall, spin';
+            document.body.appendChild(img);
+    
+            setTimeout(() => {
+                img.remove();
+            }, 6000);
         }
-      
+    
         setInterval(createYarn, 300);
-      </script>
+    </script>
+    
 </body>
 </html>
