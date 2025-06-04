@@ -3,7 +3,42 @@
 <html>
 <head>
     <title>Find a Recipe</title>
+    <style>
+        .yarn {
+          position: fixed;
+          top: -100px;
+          width: 50px;
+          opacity: 0.7;
+          animation: fall linear infinite;
+        }
+      
+        @keyframes fall {
+          0% {
+            transform: translateY(-100px);
+          }
+          100% {
+            transform: translateY(110vh);
+          }
+        }
+      </style>      
 </head>
+<script>
+    function createYarn() {
+      const img = document.createElement('img');
+      img.src = "{{ url_for('static', filename='../img/yarn.png') }}";
+      img.className = 'yarn';
+      img.style.left = Math.random() * 100 + 'vw';
+      img.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      document.body.appendChild(img);
+  
+      setTimeout(() => {
+        img.remove();
+      }, 6000);
+    }
+  
+    setInterval(createYarn, 300);
+  </script>
+
 <body>
     <h1>Find a Knitting Recipe</h1>
     <form method="post" action="/results">
