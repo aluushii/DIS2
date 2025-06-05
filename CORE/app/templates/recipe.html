@@ -1,7 +1,8 @@
-<!-- app/templates/index.html -->
+<!-- app/templates/recipe.html -->
 <!DOCTYPE html>
-<html>
+<html lang="da">
 <head>
+    <meta charset="UTF-8">
     <title>Find a Recipe</title>
     <style>
         .yarn-wrapper {
@@ -39,34 +40,32 @@
         }
 
         .body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #fff; /* or whatever fits your theme */
-        font-family: sans-serif;
-        text-align: center;
+          margin: 0;
+          padding: 0;
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #fff; /* eller en anden baggrund */
+          font-family: sans-serif;
+          text-align: center;
         }
 
         .center-box {
-        padding: 2rem;
-        border-radius: 1rem;
-        background: rgba(255, 255, 255, 0.9);
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+          padding: 2rem;
+          border-radius: 1rem;
+          background: rgba(255, 255, 255, 0.9);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
         }
 
+        form input,
         form select,
         form button {
-        margin-top: 0.5rem;
-        padding: 0.5rem;
-        font-size: 1rem;
+          margin-top: 0.5rem;
+          padding: 0.5rem;
+          font-size: 1rem;
         }
-      </style>
-      
-      
-       
+    </style>
 </head>
 
 <body>
@@ -74,11 +73,14 @@
     <h1>Find a Knitting Recipe</h1>
     <form method="post" action="/results">
       <label for="material_g">Material (g):</label>
-      <select name="material_g" required>
-        {% for g in materials %}
-        <option value="{{ g }}">{{ g }}</option>
-        {% endfor %}
-      </select>
+      <input
+        type="text"
+        id="material_g"
+        name="material_g"
+        pattern="\d+"
+        required
+        title="Indtast venligst et gyldigt tal (kun cifre)."
+      >
       <br>
 
       <label for="needle">Needle (mm):</label>
@@ -122,7 +124,6 @@
 
       wrapper.appendChild(img);
       document.body.appendChild(wrapper);
-
       setTimeout(() => wrapper.remove(), 6000);
     }
 
@@ -133,7 +134,6 @@
       diddy.style.left = Math.random() * 100 + 'vw';
       diddy.style.animationDuration = '6s';
       document.body.appendChild(diddy);
-
       setTimeout(() => diddy.remove(), 7000);
     }
 
@@ -141,5 +141,4 @@
     setInterval(createDiddy, 15000);
   </script>
 </body>
-
 </html>
