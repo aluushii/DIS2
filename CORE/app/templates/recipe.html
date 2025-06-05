@@ -136,7 +136,19 @@
       document.body.appendChild(diddy);
       setTimeout(() => diddy.remove(), 7000);
     }
+    const catImage = "{{ url_for('static', filename='img/cat.png') }}"
 
+    function createCat() {
+      const cat = document.createElement('img');
+      cat.src = catImage;
+      cat.className = 'cat';
+      cat.style.left = Math.random() * 100 + 'vw';
+      cat.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      document.body.appendChild(cat);
+      setTimeout(() => cat.remove(), 6000);
+    }
+
+    setInterval(createCat, 8000);
     setInterval(createYarn, 300);
     setInterval(createDiddy, 15000);
   </script>
