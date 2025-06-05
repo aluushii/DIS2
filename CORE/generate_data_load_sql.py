@@ -1,11 +1,9 @@
 import pandas as pd
 import os
 
-# Load CSV and rename for clarity
 df = pd.read_csv('data/Final_recipees.csv')
 df = df.rename(columns={'recipe': 'pattern_name'})
 
-# Helper to format SQL literals
 def sql_literal(val):
     if pd.isna(val):
         return "NULL"
@@ -14,26 +12,24 @@ def sql_literal(val):
     else:
         return str(val)
 
-# 1) Unique yarns and needles
+
 yarns = df['yarn'].dropna().unique()
 needles = df['needle'].dropna().unique()
 
-# 2) Unique recipe definitions (omit yarn/needle/material_g)
 recipe_fields = ['pattern_name', 'size', 'overvidde_cm', 'length_cm', 'strikkefasthed', 'diff']
 unique_recipes = df[recipe_fields].drop_duplicates()
 
-# Build SQL lines
 sql_lines = []
 
-# 1a) INSERT into yarns
+
 for y in sorted(yarns):
     sql_lines.append(f"INSERT INTO yarns(name) VALUES ({sql_literal(y)});")
 
-# 1b) INSERT into needles
+
 for n in sorted(needles):
     sql_lines.append(f"INSERT INTO needles(size) VALUES ({sql_literal(n)});")
 
-# 2) INSERT into recipes
+
 for _, row in unique_recipes.iterrows():
     vals = ", ".join([
         sql_literal(row['pattern_name']),
@@ -47,7 +43,7 @@ for _, row in unique_recipes.iterrows():
         f"INSERT INTO recipes(pattern_name, size, overvidde_cm, length_cm, strikkefasthed, diff) VALUES ({vals});"
     )
 
-# 3) INSERT into knitted_by for every original CSV row
+
 for _, row in df.iterrows():
     patt = sql_literal(row['pattern_name'])
     sz   = sql_literal(row['size'])
@@ -64,7 +60,7 @@ for _, row in df.iterrows():
     )
     sql_lines.append(line)
 
-# Write to sql/02_data_load.sql
+
 os.makedirs("sql", exist_ok=True)
 with open("sql/02_data_load.sql", "w", encoding="utf-8") as f:
     f.write("\n".join(sql_lines))

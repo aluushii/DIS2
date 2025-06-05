@@ -19,7 +19,7 @@ def recipe():
     conn = get_db_connection()
     cur = conn.cursor()
 
-    # Hent unikke material_g-værdier (gerne float-værdier fra knitted_by)
+
     cur.execute("""
         SELECT DISTINCT kb.material_g
         FROM knitted_by kb
@@ -27,7 +27,7 @@ def recipe():
     """)
     materials = [row[0] for row in cur.fetchall()]
 
-    # Hent unikke nåle-størrelser
+
     cur.execute("""
         SELECT DISTINCT n.size
         FROM needles n
@@ -36,7 +36,7 @@ def recipe():
     """)
     needles = [row[0] for row in cur.fetchall()]
 
-    # Hent unikke garn-navne
+
     cur.execute("""
         SELECT DISTINCT y.name
         FROM yarns y
