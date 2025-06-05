@@ -36,6 +36,7 @@ CORE/
 ├── run.py
 ├── generate_data_load_sql.py
 ├── app/
+├── yarn_ER_model.jpg
 │   ├── db.py
 │   ├── routes.py
 │   └── templates/
