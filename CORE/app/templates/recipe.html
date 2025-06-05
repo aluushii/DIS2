@@ -22,8 +22,8 @@
       
         .diddy {
           position: fixed;
-          top: -100px;
-          width: 100px;
+          top: -200px;
+          width: 200px;
           z-index: 999;
           pointer-events: none;
           animation: fall linear infinite;
@@ -110,7 +110,7 @@
       "{{ url_for('static', filename='img/yarn3.webp') }}",
       "{{ url_for('static', filename='img/yarn4.webp') }}"
     ];
-    const diddyImage = "{{ url_for('static', filename='img/diddy.png') }}";
+    const diddyImage = "{{ url_for('static', filename='img/output.mp4') }}";
 
     function createYarn() {
       const wrapper = document.createElement('div');
@@ -128,11 +128,16 @@
     }
 
     function createDiddy() {
-      const diddy = document.createElement('img');
+      const diddy = document.createElement('video');
       diddy.src = diddyImage;
       diddy.className = 'diddy';
       diddy.style.left = Math.random() * 100 + 'vw';
-      diddy.style.animationDuration = '6s';
+      diddy.style.animationDuration = '10s';
+      diddy.autoplay = true;
+      diddy.loop = true;
+      diddy.muted = true;
+      diddy.playsInline = true; // important for mobile browsers
+    
       document.body.appendChild(diddy);
       setTimeout(() => diddy.remove(), 7000);
     }
@@ -150,7 +155,7 @@
 
     setInterval(createCat, 8000);
     setInterval(createYarn, 300);
-    setInterval(createDiddy, 15000);
+    setInterval(createDiddy, 8000);
   </script>
 </body>
 </html>
