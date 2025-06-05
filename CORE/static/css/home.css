@@ -42,10 +42,14 @@
 }
 
 .home .hero__img {
-    width: 100%;
+    /* width: 100%; */
+    max-width: 550px;   /* <-- new fixed cap */
+    width: 100%;        /* keeps it responsive up to 300px */
+    height: auto;
     box-shadow: var(--box-shadow-depth);
     float: right;
 }
+
 
 .home__info {
     margin-top: var(--margin-xxl);
@@ -93,3 +97,13 @@
 .home__info p {
     color: var(--gray-dark);
 }
+
+.btn.btn--large {
+  display: inline-block;
+  width: auto;            /* ensure it doesn’t fill 100% */
+  align-self: flex-start; /* prevent flex from stretching it */
+  font-size: 2rem;
+  padding: 1rem 2rem;
+}
+
+
